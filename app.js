@@ -9,5 +9,32 @@ function agregarAmigo(){
     amigos.push(inputNombre.value);
     inputNombre.value = "";
     
-    //console.log(amigos);
+    actualizarLista();
+}
+
+function actualizarLista(){
+    const listAmigos = document.getElementById("listaAmigos");
+    listAmigos.innerHTML = "";
+    
+    for(let i = 0 ; i < amigos.length ; i++){
+        const nuevoElemento = document.createElement("li");    
+        nuevoElemento.textContent = amigos[i];
+        listaAmigos.appendChild(nuevoElemento);
+    }
+}
+
+function sortearAmigo(){
+    
+    if( amigos.length == 0 ){
+        alert("Por favor, ingrese nombres antes de sortear");
+        return;
+    }
+
+    const resultado = document.getElementById("resultado");
+    let i = Math.floor(Math.random() * amigos.length);
+    
+    
+    resultado.innerHTML = "El amigo secreto sorteado es: " + amigos[i];
+    amigos = [];
+    actualizarLista();
 }
